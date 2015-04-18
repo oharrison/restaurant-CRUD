@@ -1,2 +1,2 @@
 # restaurant-CRUD
-My udacity Fullstack Fundamentals final project
+My udacity Full Stack Foundations final project
