@@ -1,0 +1,50 @@
+
+/** SPANS WHOLE APPLICATION **/
+body {
+	/* background from http://www.palazzinag.com/hotel-venice/background-pg-restaurant-atmosfera002.jpg */
+	background: url("./images/main-background.png");
+	background-repeat: no-repeat; 
+	background-position: -20px 0px; 
+	background-attachment: fixed;
+}
+
+.container {
+	color: #000000;
+	width: 75%;
+	margin: 0 auto;
+	/* border: 1px white solid; */
+	background: rgba(255,255,255,0.6);
+	padding: 20px;
+	text-align: center;
+
+}
+
+h1 {
+	text-align: center;
+}
+
+.add-button {
+	text-align: center;
+}
+
+/** SPANS RESTAURANT PAGE **/
+.wrapper {
+	text-align: left;
+}
+
+a {
+	text-decoration: none;
+}
+
+.restaurant-image {
+	display: inline-block;
+	text-align: left;
+}
+
+.restaurant-body {
+	display: inline-block;
+	text-align: left;
+}
+
+
+
