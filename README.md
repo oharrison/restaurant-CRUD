@@ -1,2 +1,8 @@
 # restaurant-CRUD
-My udacity Full Stack Foundations final project
+Udacity Full Stack Foundations final project implementation.
+
+## Dependencies
+* Flask
+* SQLAlchemy
+
+
