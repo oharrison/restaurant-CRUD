@@ -9,14 +9,14 @@ body {
 }
 
 .container {
-	color: #000000;
+	color: #ffffff;
 	width: 75%;
 	margin: 0 auto;
 	/* border: 1px white solid; */
-	background: rgba(255,255,255,0.6);
+	background: rgba(0,0,0,0.7);
 	padding: 20px;
 	text-align: center;
-
+	border-radius: 5px;
 }
 
 h1 {
@@ -27,14 +27,39 @@ h1 {
 	text-align: center;
 }
 
-/** SPANS RESTAURANT PAGE **/
-.wrapper {
-	text-align: left;
-}
-
 a {
 	text-decoration: none;
+	color:white;
+	border: 1px white solid;
 }
+
+a:hover {
+	background:  #ffffff;
+	color: #000000;
+}
+
+.danger {
+	color: red;
+}
+
+.subject {
+	text-decoration: underline;
+}
+
+.wrapper {
+	text-align: left;
+	padding-top: 3%;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+.flashes {
+	color: yellow;
+}
+
+
+/** SPANS RESTAURANT PAGE **/
+
 
 .restaurant-image {
 	display: inline-block;
@@ -44,6 +69,13 @@ a {
 .restaurant-body {
 	display: inline-block;
 	text-align: left;
+	margin-left: 20px;
+}
+
+/** SPANS MENU PAGE **/
+.course {
+	border-bottom: 1px white solid;
+	color: green;
 }
 
 

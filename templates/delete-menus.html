@@ -13,7 +13,7 @@
 			<section class="form-section">
 				<form method="POST" action="{{ url_for('deleteMenuItem', restaurant_id = restaurant_id, menu_id = menu.id) }}">
 					<p>					
-						<h3>Are you sure you want to delete {{ menu.name }}?</h3>
+						<h3 class="danger">Are you sure you want to delete <span class="subject">{{ menu.name }}</span>?</h3>
 					</p>	
 					<input class="buttons" type="submit" value="Yes">
 					<a class="buttons" href="{{ url_for('restaurantMenu', restaurant_id = restaurant_id) }}">Cancel</a>

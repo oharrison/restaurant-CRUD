@@ -14,18 +14,40 @@
 				<p><a href="{{ url_for('newMenuItem', restaurant_id = restaurant.id) }}">Add a menu item</a></p>
 				<p><a href="{{ url_for('index') }}">Return to Restaurants</a></p>
 			</div>
-			<div class="wrapper">
-				{% for item in items %}
-				<section class="menu-block">
-					<div class="menu-body">
-						<h2>{{item.name}}</h2>
-						<p> {{item.description}}</p>
-						<p> {{item.price}}</p>
-						<a class="buttons" href="{{ url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id) }}">Edit</a> / 
-						<a class="buttons" href="{{ url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id) }}">Delete</a> 
-					</div>
-				<section>
+			
+			{% with messages = get_flashed_messages(with_categories=true) %}
+			  {% if messages %}
+				<ul class=flashes>
+				{% for category, message in messages %}
+				  <li class="{{ category }}">{{ message }}</li>
 				{% endfor %}
+				</ul>
+			  {% endif %}
+			{% endwith %}
+			<div class="wrapper">
+				{% if items %}
+					{% for course in courses %}
+					<section class="{{course}}">
+						<h2 class="course">{{ course }}</h2>
+						{% for item in items %}
+							{% if item.course == course %}
+								<section class="menu-block">
+									<div class="menu-body">
+										<h3>{{item.name}}</h3>
+										<p> {{item.description}}</p>
+										<p> {{item.price}}</p>
+										<a class="buttons" href="{{ url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id) }}">Edit</a> / 
+										<a class="buttons" href="{{ url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id) }}">Delete</a> 
+									</div>
+								<section>
+							{% endif %}
+						{% endfor %}
+					</section>
+					{% endfor %}
+				{% else %}
+					<p>This restaurant currently has no menu items. To add a menu item, click the "Add a menu item" button above.</p>
+				{% endif %}
+				
 			</div>
 		</div>
 	<body>
