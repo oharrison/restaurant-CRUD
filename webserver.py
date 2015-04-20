@@ -49,7 +49,9 @@ def index():
 @app.route("/restaurants/new/", methods=["GET", "POST"])
 def newRestaurant():
 	if request.method == "POST":
-		restaurant = Restaurant(name = request.form["restaurant-name"])
+		restaurant = Restaurant(name = request.form["restaurant-name"], thumbnail_url = request.form["restaurant-image-url"])
+		if request.form["restaurant-description"]:
+			restaurant.description = request.form["restaurant-description"]
 		session.add(restaurant)
 		session.commit()
 		flash("New Restaurant Added")
@@ -64,6 +66,10 @@ def editRestaurant(restaurant_id):
 	if request.method == "POST":
 		if request.form["restaurant-name"]:
 			restaurant.name = request.form["restaurant-name"]
+		if request.form["restaurant-description"]:
+			restaurant.description = request.form["restaurant-description"]
+		if request.form["restaurant-image-url"]:
+			restaurant.thumbnail_url = request.form["restaurant-image-url"]
 		session.add(restaurant)
 		session.commit()
 		flash("Restaurant Successfully Edited")
@@ -76,9 +82,9 @@ def editRestaurant(restaurant_id):
 def deleteRestaurant(restaurant_id):
 	restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
 	if request.method == "POST":
-		menu = session.query(MenuItem).filter_by(restaurant_id = restaurant_id).first()
-		if menu:
-			session.delete(menu)
+		menu_items = session.query(MenuItem).filter_by(restaurant_id = restaurant_id).all()
+		for item in menu_items:
+			session.delete(item)
 		session.delete(restaurant)
 		session.commit()
 		flash("Restaurant Successfully Deleted")

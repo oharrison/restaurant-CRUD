@@ -11,14 +11,23 @@
 				<h1>{{ title }}</h1>
 			</header>
 			<section class="form-section">
-				<form method="POST" action="/restaurants/new/">
+				<form method="POST" action="{{ url_for('newRestaurant') }}">
 					<p>					
 						<label for="restaurant-name"> Name: 				
-							<input type="text" name="restaurant-name" placeholder="New Restaurant Name">
+							<input required type="text" name="restaurant-name" placeholder="New Restaurant Name">
 						</label>
 					</p>	
-					<!-- TODO: ADD IMAGE URL INPUT-->
-					<!-- TODO: ADD DESCRIPTION TEXTAREA-->
+					<p>					
+						<label for="restaurant-description"> Description: 				
+							<input required type="text" name="restaurant-description" placeholder="New Restaurant Description">
+						</label>
+					</p>
+					<p>					
+						<label for="restaurant-image-url"> Thumbnail URL: 				
+							<input type="text" name="restaurant-image-url" placeholder="http://images.com/iamge.jpg" 
+									value="http://www.magazinehive.com/wp-content/uploads/2013/01/Good-Looking-Restaurant-Logos-Design-for-Inspiration.jpg">
+						</label>
+					</p>
 					<input class="buttons" type="submit" value="Add">
 					<a href="{{ url_for('index') }}">Cancel</a>
 				</form>

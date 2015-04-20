@@ -26,13 +26,12 @@
 				{% if restaurants %}
 					{% for restaurant in restaurants %}
 					<section class="restaurant-block">
-						<!-- TODO: DISPLAY IMAGE -->
 						<div class="restaurant-image">
-							<img src='#' width="128" height="128">
+							<img src="{{ restaurant.thumbnail_url }}" width="128" height="128">
 						</div>
 						<div class="restaurant-body">
-							<h2>{{restaurant.name}}</h2>
-							<p> {{restaurant.description}}</p>
+							<h2>{{ restaurant.name }}</h2>
+							<p> {{ restaurant.description }}</p>
 							<p>
 								<a class="buttons" href="{{ url_for('editRestaurant', restaurant_id = restaurant.id) }}">Edit</a> 
 								<a class="buttons" href="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}">Delete</a>
