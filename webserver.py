@@ -76,7 +76,9 @@ def editRestaurant(restaurant_id):
 def deleteRestaurant(restaurant_id):
 	restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
 	if request.method == "POST":
+		menu = session.query(MenuItem).filter_by(restaurant_id = restaurant_id).one()
 		session.delete(restaurant)
+		session.delete(menu)
 		session.commit()
 		flash("Restaurant Successfully Deleted")
 		return redirect(url_for('index'))
