@@ -101,7 +101,6 @@ def restaurantMenu(restaurant_id):
 	for item in menu_items:
 		if item.course not in courses:
 			courses.append(item.course)
-	print courses
 	return render_template("menus.html", title="%s Menu" % restaurant.name, items = menu_items, restaurant = restaurant, courses = courses)
 
 # Add a new menu item
