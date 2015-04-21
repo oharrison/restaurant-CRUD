@@ -1,54 +1,42 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>{{ title }}</title>
-		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
-	</head>
-	<body>
-		<div class="container">
-			<header>
-				<h1>{{ title }}</h1>
-			</header>
-			<div class="add-button">
-				<p><a href="{{ url_for('newMenuItem', restaurant_id = restaurant.id) }}">Add a menu item</a></p>
-				<p><a href="{{ url_for('index') }}">Return to Restaurants</a></p>
-			</div>
-			
-			{% with messages = get_flashed_messages(with_categories=true) %}
-			  {% if messages %}
-				<ul class=flashes>
-				{% for category, message in messages %}
-				  <li class="{{ category }}">{{ message }}</li>
+{% extends "layout.html" %}
+{% block content%}
+	<div class="add-button">
+		<p><a href="{{ url_for('newMenuItem', restaurant_id = restaurant.id) }}">Add a menu item</a></p>
+		<p><a href="{{ url_for('index') }}">Return to Restaurants</a></p>
+	</div>
+	
+	{% with messages = get_flashed_messages(with_categories=true) %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for category, message in messages %}
+		  <li class="{{ category }}">{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+	<div class="wrapper">
+		{% if items %}
+			{% for course in courses %}
+			<section class="{{course}}">
+				<h2 class="course">{{ course }}</h2>
+				{% for item in items %}
+					{% if item.course == course %}
+						<section class="menu-block">
+							<div class="menu-body">
+								<h3>{{item.name}}</h3>
+								<p> {{item.description}}</p>
+								<p> {{item.price}}</p>
+								<a class="buttons" href="{{ url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id) }}">Edit</a>
+								<a class="buttons" href="{{ url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id) }}">Delete</a> 
+							</div>
+						<section>
+					{% endif %}
 				{% endfor %}
-				</ul>
-			  {% endif %}
-			{% endwith %}
-			<div class="wrapper">
-				{% if items %}
-					{% for course in courses %}
-					<section class="{{course}}">
-						<h2 class="course">{{ course }}</h2>
-						{% for item in items %}
-							{% if item.course == course %}
-								<section class="menu-block">
-									<div class="menu-body">
-										<h3>{{item.name}}</h3>
-										<p> {{item.description}}</p>
-										<p> {{item.price}}</p>
-										<a class="buttons" href="{{ url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id) }}">Edit</a>
-										<a class="buttons" href="{{ url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id) }}">Delete</a> 
-									</div>
-								<section>
-							{% endif %}
-						{% endfor %}
-					</section>
-					{% endfor %}
-				{% else %}
-					<p>This restaurant currently has no menu items. To add a menu item, click the "Add a menu item" button above.</p>
-				{% endif %}
+			</section>
+			{% endfor %}
+		{% else %}
+			<p>This restaurant currently has no menu items. To add a menu item, click the "Add a menu item" button above.</p>
+		{% endif %}
 				
-			</div>
-		</div>
-	<body>
-</html>
+	</div>
+{% endblock %}

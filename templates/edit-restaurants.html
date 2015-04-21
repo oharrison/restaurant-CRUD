@@ -1,37 +1,25 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>{{ title }}</title>
-		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
-	</head>
-	<body>
-		<div class="container">
-			<header>
-				<h1>{{ title }}</h1>
-			</header>
-			<section class="form-section">
-				<p>You are about to edit <span class="subject">{{ restaurant.name }}</span>.</p>
-				<form method="POST" action="{{ url_for('editRestaurant', restaurant_id = restaurant.id )}}">
-					<p>					
-						<label for="restaurant-name"> Name: 				
-							<input type="text" name="restaurant-name" placeholder="{{ restaurant.name }}">
-						</label>
-					</p>	
-					<p>					
-						<label for="restaurant-description"> Description: 				
-							<input type="text" name="restaurant-description" placeholder="{{ restaurant.description }}">
-						</label>
-					</p>
-					<p>					
-						<label for="restaurant-image-url"> Thumbnail URL: 				
-							<input type="text" name="restaurant-image-url" placeholder="{{ restaurant.thumbnail_url }}">
-						</label>
-					</p>
-					<input class="buttons" type="submit" value="Edit">
-					<a class="buttons" href="/">Cancel</a>
-				</form>
-			</section>
-		</div>
-	<body>
-</html>
+{% extends "layout.html" %}
+{% block content%}
+	<section class="form-section">
+		<p>You are about to edit <span class="subject">{{ restaurant.name }}</span>.</p>
+		<form method="POST" action="{{ url_for('editRestaurant', restaurant_id = restaurant.id )}}">
+			<p>					
+				<label for="restaurant-name"> Name: 				
+					<input type="text" name="restaurant-name" placeholder="{{ restaurant.name }}">
+				</label>
+			</p>	
+			<p>					
+				<label for="restaurant-description"> Description: 				
+					<input type="text" name="restaurant-description" placeholder="{{ restaurant.description }}">
+				</label>
+			</p>
+			<p>					
+				<label for="restaurant-image-url"> Thumbnail URL: 				
+						<input type="text" name="restaurant-image-url" placeholder="{{ restaurant.thumbnail_url }}">
+				</label>
+			</p>
+			<input class="buttons" type="submit" value="Edit">
+			<a class="buttons" href="/">Cancel</a>
+		</form>
+	</section>
+{% endblock %}

@@ -1,24 +1,12 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>{{ title }}</title>
-		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
-	</head>
-	<body>
-		<div class="container">
-			<header>
-				<h1>{{ title }}</h1>
-			</header>
-			<section class="form-section">
-				<form method="POST" action="{{ url_for('deleteMenuItem', restaurant_id = restaurant_id, menu_id = menu.id) }}">
-					<p>					
-						<h3 class="danger">Are you sure you want to delete <span class="subject">{{ menu.name }}</span>?</h3>
-					</p>	
-					<input class="buttons" type="submit" value="Yes">
-					<a class="buttons" href="{{ url_for('restaurantMenu', restaurant_id = restaurant_id) }}">Cancel</a>
-				</form>
-			</section>
-		</div>
-	<body>
-</html>
+{% extends "layout.html" %}
+{% block content%}
+	<section class="form-section">
+		<form method="POST" action="{{ url_for('deleteMenuItem', restaurant_id = restaurant_id, menu_id = menu.id) }}">
+			<p>					
+				<h3 class="danger">Are you sure you want to delete <span class="subject">{{ menu.name }}</span>?</h3>
+			</p>	
+			<input class="buttons" type="submit" value="Yes">
+			<a class="buttons" href="{{ url_for('restaurantMenu', restaurant_id = restaurant_id) }}">Cancel</a>
+		</form>
+	</section>
+{% endblock %}

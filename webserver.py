@@ -115,7 +115,7 @@ def newMenuItem(restaurant_id):
 		flash("New Menu Item Added")
 		return redirect(url_for("restaurantMenu", restaurant_id = restaurant_id))
 	else:
-		return render_template("new-menus.html", title="Add a New Menu", restaurant_id = restaurant_id)
+		return render_template("new-menus.html", title="Add a New Menu Item", restaurant_id = restaurant_id)
 
 # Edit an existing menu item
 @app.route("/restaurants/<int:restaurant_id>/menu/<int:menu_id>/edit/", methods=["GET", "POST"])
